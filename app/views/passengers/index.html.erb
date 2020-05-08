@@ -1,21 +1,25 @@
 
 <% if @passengers.length > 0%>
-  <ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
     <% @passengers.each do |passenger|%>
-     <li>
-        <%# <%= link_to passenger.date, trip_path(passenger) %>
-        Id: <%= passenger.id %>  
-      </li>
-      <li> 
-        <%# <%= link_to passenger.date, trip_path(passenger) %>
-        passenger name: <%= passenger.name %>  
-      </li>
-      <li>
-       Phone Number: <%= passenger.phone_num %>
-      </li>
+      <tr>
+        <%# <th scope="row"></th> %>
+        <td><%= passenger.id %></td>
+        <td><%= passenger.name %></td>
+        <td><%= passenger.phone_num %></td>
+      </tr>
+    </tbody>
     <%end %>
-  <ul>
-  <%# <%= link_to "Add passenger", new_book_path %>
+</table>
+
 <%else%>
   <h3> No passengers </h3>
 <%end%>

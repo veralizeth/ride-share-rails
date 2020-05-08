@@ -1,26 +1,28 @@
 
 <% if @trips.length > 0%>
-  <ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Driver's Name</th>
+        <th>passenger's Name</th>
+        <th>Trip cost</th>
+        <th>Trip rating</th>
+      </tr>
+    </thead>
+    <tbody>
     <% @trips.each do |trip|%>
-      <li> 
-        <%# <%= link_to trip.date, trip_path(trip) %>
-        passenger name: <%= trip.passenger.name %>  
-      </li>
-      <li>
-        driver name: <%= trip.driver.name %>
-      </li>
-      <li>
-        cost: <%= trip.cost %>
-      </li>
-      <li>
-        rating: <%= trip.rating %>
-      </li>
-      <li>
-        date: <%= trip.date %>
-      </li>
+      <tr>
+        <%# <th scope="row"></th> %>
+        <td><%= trip.id %></td>
+        <td><%= trip.driver.name %></td>
+        <td><%= trip.passenger.name %></td>
+        <td><%= trip.cost %></td>
+        <td><%= trip.rating %></td>
+      </tr>
+    </tbody>
     <%end %>
-  <ul>
-  <%# <%= link_to "Add Trip", new_book_path %>
+</table>
 <%else%>
-  <h3> No trips </h3>
+  <h3> No Trips! </h3>
 <%end%>

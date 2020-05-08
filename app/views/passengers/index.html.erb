@@ -1,0 +1,21 @@
+
+<% if @passengers.length > 0%>
+  <ul>
+    <% @passengers.each do |passenger|%>
+     <li>
+        <%# <%= link_to passenger.date, trip_path(passenger) %>
+        Id: <%= passenger.id %>  
+      </li>
+      <li> 
+        <%# <%= link_to passenger.date, trip_path(passenger) %>
+        passenger name: <%= passenger.name %>  
+      </li>
+      <li>
+       Phone Number: <%= passenger.phone_num %>
+      </li>
+    <%end %>
+  <ul>
+  <%# <%= link_to "Add passenger", new_book_path %>
+<%else%>
+  <h3> No passengers </h3>
+<%end%>

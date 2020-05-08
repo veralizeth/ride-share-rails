@@ -1,0 +1,25 @@
+
+<% if @drivers.length > 0%>
+  <ul>
+    <% @drivers.each do |driver|%>
+     <li>
+        <%# <%= link_to driver.date, trip_path(driver) %>
+        Id: <%= driver.id %>  
+      </li>
+      <li> 
+        <%# <%= link_to driver.date, trip_path(driver) %>
+        driver name: <%= driver.name %>  
+      </li>
+      <li>
+       Vin: <%= driver.vin %>
+      </li>
+       <li> 
+        <%# <%= link_to driver.date, trip_path(driver) %>
+        availability <%= driver.available %>  
+      </li>
+    <%end %>
+  <ul>
+  <%# <%= link_to "Add driver", new_book_path %>
+<%else%>
+  <h3> No driver </h3>
+<%end%>

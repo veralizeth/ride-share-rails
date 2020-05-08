@@ -1,0 +1,26 @@
+
+<% if @trips.length > 0%>
+  <ul>
+    <% @trips.each do |trip|%>
+      <li> 
+        <%# <%= link_to trip.date, trip_path(trip) %>
+        passenger name: <%= trip.passenger.name %>  
+      </li>
+      <li>
+        driver name: <%= trip.driver.name %>
+      </li>
+      <li>
+        cost: <%= trip.cost %>
+      </li>
+      <li>
+        rating: <%= trip.rating %>
+      </li>
+      <li>
+        date: <%= trip.date %>
+      </li>
+    <%end %>
+  <ul>
+  <%# <%= link_to "Add Trip", new_book_path %>
+<%else%>
+  <h3> No trips </h3>
+<%end%>

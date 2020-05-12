@@ -1,43 +1,54 @@
-<div>
-  <h2><%= @passenger.id %></h2>
-  <h2><%= @passenger.name %></h2> 
-  <h2><%= @passenger.phone_num %></h2> 
-  
 
-  <%= link_to "Edit", edit_passenger_path(@passenger) %>
-  <%= link_to "Request Ride", passenger_trips_path(@passenger.id), method: :post, data: { confirm: "Are you sure you want to request a trip?" } %>
-  <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
-</div>
-
-
+<%= link_to "Request Ride", passenger_trips_path(@passenger.id), method: :post, data: { confirm: "Are you sure you want to request a trip?" } %>
 <p><%= link_to "Return to Passengers", passengers_path %></p> 
 
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="passenger_table">
+      <td><%= @passenger.id %></td>
+      <td><%= @passenger.name %></td>
+      <td><%= @passenger.phone_num %></td>
+      <td> <%= link_to "Edit", edit_passenger_path(@passenger) %></td>
+      <td> <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}%></td>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Trip id</th>
-        <th>Driver's Name</th>
-        <th>passenger's Name</th>
-        <th>Date</th>
-        <th>Trip cost</th>
-        <th>Trip rating</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @passenger.trips.each do |trip| %>
-    
-      <tr>
-        <%# <th scope="row"></th> %>
-        <td><%= trip.id %></td>
-        <td><%= trip.driver.name  %></td>
-        <td><%= trip.passenger.name%></td>
-        <td><%= trip.date %></td>
-        <td><%= trip.cost %></td>
-        <td><%= trip.rating %></td>
-        <td class="btn-table"> <%= link_to "Edit", edit_trip_path(trip.id) %></td>
-        <td class="btn-table"><%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %></td>
-      </tr>
-    </tbody>
-    <%end%>
+    </tr>
+  </tbody>
+</table>
+
+<h1>Trips</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Trip id</th>
+      <th>Driver's Name</th>
+      <th>passenger's Name</th>
+      <th>Date</th>
+      <th>Trip cost</th>
+      <th>Trip rating</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @passenger.trips.each do |trip| %>
+  
+    <tr>
+      <%# <th scope="row"></th> %>
+      <td><%= trip.id %></td>
+      <td><%= trip.driver.name  %></td>
+      <td><%= trip.passenger.name%></td>
+      <td><%= trip.date %></td>
+      <td><%= trip.cost %></td>
+      <td><%= trip.rating %></td>
+      <td class="btn-table"> <%= link_to "Edit", edit_trip_path(trip.id) %></td>
+      <td class="btn-table"><%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %></td>
+    </tr>
+  </tbody>
+  <%end%>
 </table>

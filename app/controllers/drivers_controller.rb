@@ -62,7 +62,9 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver.id)# Send them to the '/trips' path
     else
-      render :new, :bad_request
+    
+      render :new
+    
     end
   end
 

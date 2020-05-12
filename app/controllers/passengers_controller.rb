@@ -65,7 +65,7 @@ class PassengersController < ApplicationController
     end
 
   passenger.destroy
-  redirect_to trips_path
+  redirect_to passengers_path
  
   end
 

@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   
   resources :trips
   resources :drivers
+  
   resources :passengers do
     resources :trips, only: [:index, :create]
   end
 
+  get "/trips/:id/rate", to: "trips#rate", as: "rate"
 end

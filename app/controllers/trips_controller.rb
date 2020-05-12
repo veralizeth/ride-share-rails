@@ -1,6 +1,5 @@
 class TripsController < ApplicationController
   def index # Fleshing out our index action.
-
     @trips = Trip.all
   end
 
@@ -13,24 +12,21 @@ class TripsController < ApplicationController
     end
   end
 
-
-  # def new
-  #   @trip = Trip.new
-  # end
-
-
-
   def create
-    @trip = Trip.new(trip_params)
-    
-    if @trip.save 
-      redirect_to trip_path(@trip.id) 
+    @passenger = Passenger.find_by(id: params[:passenger_id])
+    @driver = @passenger.available_driver
+
+    new_trip_info = { driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, cost: 100 }
+
+    @trip = Trip.new(new_trip_info)
+
+    if @trip.save
+      redirect_to trip_path(@trip.id)
       return
-    else 
-      render :new 
+    else
+      render :new
     end
   end
-
 
   def edit
     @trip = Trip.find_by(id: params[:id])
@@ -41,21 +37,19 @@ class TripsController < ApplicationController
     end
   end
 
-
   def update
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
       head :not_found
       return
     elsif @trip.update(trip_params)
-      redirect_to trip_path(@trip.id) 
+      redirect_to trip_path(@trip.id)
       return
-    else 
-      render :edit 
+    else
+      render :edit
       return
     end
   end
-
 
   def destroy
     trip_id = params[:id]
@@ -66,17 +60,14 @@ class TripsController < ApplicationController
       return
     end
 
-  trip.destroy
-  redirect_to trips_path
+    trip.destroy
+    redirect_to trips_path
   end
-
 
   private
 
   def trip_params
-    return params.require(:trips).permit(:available_driver, :passenger_id, :cost, :rating)
+    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+    # return params.require(:trip).permit(date: Date.today, rating: 0, cost: rand(500..5000), driver_id: @driver.id, passenger_id: @passenger.id)
   end
-
 end
-
-

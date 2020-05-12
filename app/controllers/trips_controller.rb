@@ -21,7 +21,11 @@ class TripsController < ApplicationController
     @trip = Trip.new(new_trip_info)
 
     if @trip.save
+      @driver.available = false
+      @driver.save
+
       redirect_to trip_path(@trip.id)
+      
       return
     else
       render :new

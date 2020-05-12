@@ -12,4 +12,9 @@ class Passenger < ApplicationRecord
       return nil
     end
   end
+
+  # See the total amount the passenger has been charged
+  def total_charged
+   return self.trips.sum(&:cost)
+  end
 end

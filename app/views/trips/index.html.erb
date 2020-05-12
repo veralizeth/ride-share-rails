@@ -13,7 +13,7 @@
     <tbody>
     <% @trips.each do |trip|%>
       <tr>
-        <td><%= trip.id %></td>
+        <td><%= link_to trip.id, trip_path(trip.id) %></td>
         <% if trip.driver.nil? %>
           <td><%= "Unknown or Deleted"%></td>
         <% else %>

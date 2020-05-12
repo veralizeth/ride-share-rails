@@ -68,6 +68,5 @@ class TripsController < ApplicationController
 
   def trip_params
     return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
-    # return params.require(:trip).permit(date: Date.today, rating: 0, cost: rand(500..5000), driver_id: @driver.id, passenger_id: @passenger.id)
   end
 end

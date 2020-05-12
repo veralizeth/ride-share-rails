@@ -15,8 +15,8 @@
       <tr>
         <%# <th scope="row"></th> %>
         <td><%= trip.id %></td>
-        <td><%= trip.driver.name %></td>
-        <td><%= trip.passenger.name %></td>
+        <td><%= trip.driver&.name || "Deleted" %></td>
+        <td><%= trip.passenger&.name || "Deleted" %></td>
         <td><%= trip.cost %></td>
         <td><%= trip.rating %></td>
       </tr>

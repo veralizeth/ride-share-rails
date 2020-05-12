@@ -1,14 +1,28 @@
-<div>
-  <h1><%= @driver.id %></h1>
-  <h2><%= @driver.name %></h2>
-  <h2><%= @driver.vin %></h2> 
-  <h2><%= @driver.available %></h2>
-  
-  <%= link_to "Edit", edit_driver_path(@driver) %>
-  <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%>
-</div>
 
 <p><%= link_to "Return to driver List", drivers_path %></p> 
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Vin</th>
+      <th>Availability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="driver_table">
+      <td><%= @driver.id %></td>
+      <td><%= @driver.name %></td>
+      <td><%= @driver.vin %></td>
+      <td><%= @driver.available %></td>
+      <td> <%= link_to "Edit", edit_driver_path(@driver) %></td>
+      <td> <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1><%=@driver.name %>'s Trips</h1>
 
   <table class="table">
     <thead>

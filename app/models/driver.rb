@@ -6,9 +6,7 @@ class Driver < ApplicationRecord
   has_many :trips,  dependent: :nullify
 
   def total_earnings
-
-    return self.trips.sum { |trip| (trip.cost - 1.65 ) * 0.8 }
-
+    return self.trips.sum { |trip| (trip.cost - 165 ) * 0.8 }
   end
 
   def average_rating
@@ -24,7 +22,7 @@ class Driver < ApplicationRecord
     if count == 0
       return 0
     else
-      total_rating / count 
+      return (total_rating.to_f / count).round(2)
     end
   end
 

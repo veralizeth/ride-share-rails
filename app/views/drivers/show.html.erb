@@ -9,3 +9,31 @@
 </div>
 
 <p><%= link_to "Return to driver List", drivers_path %></p> 
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Trip id</th>
+        <th>Driver's Name</th>
+        <th>Passenger's Name</th>
+        <th>Date</th>
+        <th>Trip cost</th>
+        <th>Trip rating</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @driver.trips.each do |trip| %>
+    
+      <tr>
+        <td><%= trip.id %></td>
+        <td><%= trip.driver.name  %></td>
+        <td><%= trip.passenger.name%></td>
+        <td><%= trip.date %></td>
+        <td><%= trip.cost %></td>
+        <td><%= trip.rating %></td>
+        <td class="btn-table"> <%= link_to "Edit", edit_trip_path(trip.id) %></td>
+        <td class="btn-table"><%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %></td>
+      </tr>
+    </tbody>
+    <%end%>
+</table>

@@ -11,10 +11,10 @@
     </thead>
     <tbody>
     <% @drivers.each do |driver|%>
-      <tr>
+      <tr class="driver_table">
         <%# <th scope="row"></th> %>
         <td><%= driver.id %></td>
-        <td><%= driver.name %></td>
+        <td><%= link_to driver.name, driver_path(driver) %></td>
         <td><%= driver.vin %></td>
         <td><%= driver.available %></td>
       </tr>

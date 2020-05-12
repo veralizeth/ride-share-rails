@@ -1,4 +1,15 @@
 <%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+
+  <% if @passenger.errors.any? %>
+    <ul class="errors">
+      <% @passenger.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <p>Please provide the following information to edit the passenger list in our database:</p>
 
   <%= f.label :name %>

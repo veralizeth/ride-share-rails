@@ -5,7 +5,7 @@
       <tr>
         <th>id</th>
         <th>Driver's Name</th>
-        <th>passenger's Name</th>
+        <th>Passenger's Name</th>
         <th>Trip cost</th>
         <th>Trip rating</th>
       </tr>
@@ -13,10 +13,17 @@
     <tbody>
     <% @trips.each do |trip|%>
       <tr>
-        <%# <th scope="row"></th> %>
         <td><%= trip.id %></td>
-        <td><%= trip.driver&.name || "Deleted" %></td>
-        <td><%= trip.passenger&.name || "Deleted" %></td>
+        <% if trip.driver.nil? %>
+          <td><%= "Unknown or Deleted"%></td>
+        <% else %>
+          <td> <%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
+        <% end %>
+        <% if trip.passenger.nil? %>
+          <td><%= "Unknown or Deleted"%></td>
+        <% else %>
+          <td> <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+        <% end %>
         <td><%= trip.cost %></td>
         <td><%= trip.rating %></td>
       </tr>

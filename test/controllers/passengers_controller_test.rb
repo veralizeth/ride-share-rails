@@ -80,11 +80,15 @@ describe PassengersController do
 
       # Arrange
       get edit_passenger_path(passenger.id)
+
       # Act-Assert
       must_respond_with :success
     end
+    
     it "will respond with redirect when attempting to edit a nonexistant passenger" do
+      # Arrange
       get edit_passenger_path(-10)
+
       # Assert
       must_respond_with :not_found
     end
@@ -139,23 +143,22 @@ describe PassengersController do
   describe "destroy" do
     it "can delete a passenger" do
 
-      # Ensure that there is a change of -1 in Passenger.count
       passenger = Passenger.create name: "Vera Wang", phone_num: "1234567"
       # Assert
       expect {
         delete passenger_path(passenger.id)
       }.must_differ "Passenger.count", -1
-      # Check that the controller redirects
+      
       must_redirect_to passengers_path
     end
     it "will respond with redirect when attempting to delete a nonexistant passenger" do
       expect {
         delete passenger_path(-1)
       }.must_differ "Passenger.count", 0
+      
       # Act-Assert
-      # Ensure that there is no change in Driver.count
       must_respond_with :not_found
-      # Assert
+     
     end
   end
 end

@@ -28,7 +28,8 @@
   <%= f.text_field :cost %>
 
   <%= f.label :rating%>
-  <%= f.text_field :rating %>
+  <%= f.select :rating, [5, 4, 3, 2, 1] %>
+ 
   
   <%= f.submit "#{action_name} Trip", class: "trip-button" %>
 <% end %>

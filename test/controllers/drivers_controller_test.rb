@@ -119,21 +119,17 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
-
-      # Act
-
-      # Assert
-
+      get edit_driver_path(driver.id)
+      # Act-Assert
+      must_respond_with :success
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
-
-      # Act
-
+      get edit_driver_path(-10)
       # Assert
-
+      must_respond_with :not_found
     end
   end
 
@@ -143,7 +139,7 @@ describe DriversController do
         driver: {
           name: "driver Name",
           vin: "VDSDD",
-          available: true
+          available: true,
         },
       }
     }
@@ -172,8 +168,8 @@ describe DriversController do
 
     it "will not update if the params are invalid" do
       id = driver.id
-      new_driver_hash[:driver][:name] = ""
-      driver = Driver.find_by(id: id)
+      new_driver_hash[:driver][:name] = nil
+      passenger = Driver.find_by(id: id)
       expect {
         patch driver_path(driver.id), params: new_driver_hash
       }.wont_change "Driver.count"
@@ -186,24 +182,26 @@ describe DriversController do
 
   describe "destroy" do
     it "destroys the driver instance in db when driver exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
 
-      # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
-
+      driver = Driver.create name: "Vera Wang", vin: "ASCSF", available: true
       # Assert
+      expect {
+        delete driver_path(driver.id)
+      }.must_differ "Driver.count", -1
       # Check that the controller redirects
-
+      must_redirect_to drivers_path
     end
 
     it "does not change the db when the driver does not exist, then responds with " do
       # Arrange
       # Ensure there is an invalid id that points to no driver
-
+      expect {
+        delete driver_path(-1)
+      }.must_differ "Driver.count", 0
       # Act-Assert
       # Ensure that there is no change in Driver.count
-
+      must_respond_with :not_found
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
 

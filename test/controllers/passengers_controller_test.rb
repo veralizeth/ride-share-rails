@@ -79,9 +79,20 @@ describe PassengersController do
 
 
   describe "edit" do
-    # Your tests go here
+    it "can get the edit page for passenger" do
+     
+      # Arrange
+      get edit_passenger_path(passenger.id)
+      # Act-Assert
+      must_respond_with :success
+    end
+    it "will respond with redirect when attempting to edit a nonexistant passenger" do
+      
+      get edit_passenger_path(-10)
+      # Assert
+      must_respond_with :not_found
+    end
   end
-
 
   describe "update" do
     
@@ -131,9 +142,19 @@ describe PassengersController do
     end
   end
 
-
-
   describe "destroy" do
-    # Your tests go here
+    it "can delete a passenger" do
+     
+      # Arrange
+      delete passenger_path(passenger.id)
+      # Act-Assert
+      must_respond_with :redirect
+    end
+    it "will respond with redirect when attempting to delete a nonexistant passenger" do
+      
+      delete passenger_path(-10)
+      # Assert
+      must_respond_with :not_found
+    end
   end
 end

@@ -1,6 +1,6 @@
 
-<%= link_to "Request Ride", passenger_trips_path(@passenger.id), method: :post, data: { confirm: "Are you sure you want to request a trip?" } %>
-<p><%= link_to "Return to Passengers", passengers_path %></p> 
+<%= link_to "Request Ride", passenger_trips_path(@passenger.id), method: :post, data: { confirm: "Are you sure you want to request a trip?" }, class: "btn btn-secondary" %>
+<p><%= link_to "Return to Passengers", passengers_path , class: "btn btn-secondary"%></p> 
 <p> <strong>Total Charged:</strong> $<%= @passenger.total_charged.to_f / 100 %></p>
 
  <table class="table table-hover">

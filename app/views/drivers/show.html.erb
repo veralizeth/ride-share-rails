@@ -1,5 +1,5 @@
 
-<p><%= link_to "Return to driver List", drivers_path %></p> 
+<p><%= link_to "Return to driver List", drivers_path, class: "btn btn-secondary"%></p> 
 <p> <strong>Total Earnings:</strong> $<%= @driver.total_earnings.to_f / 100 %></p>
 <p> <strong>Average rating:</strong> <%= @driver.average_rating%></p>
 

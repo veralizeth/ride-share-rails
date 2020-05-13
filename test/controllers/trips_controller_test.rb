@@ -60,7 +60,7 @@ describe TripsController do
     let (:new_trip_hash) {
       {
         trip: {
-          driver: @passenger.available_driver,
+          driver: Driver.available_driver,
           passenger: @passenger,
           date: Date.today,
           cost: 200,

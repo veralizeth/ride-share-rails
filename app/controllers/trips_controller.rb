@@ -5,8 +5,10 @@ class TripsController < ApplicationController
 
   def show
     trip_id = params[:id]
+
     @trip = Trip.find_by(id: trip_id)
     if @trip.nil?
+    
       head :not_found
       return
     end
@@ -66,6 +68,15 @@ class TripsController < ApplicationController
 
     trip.destroy
     redirect_to trips_path
+  end
+
+  def rating
+    @trips = Trip.where(rating: 0)
+
+    if @trips.nil?
+      head :not_found
+      return
+    end
   end
 
   private

@@ -16,8 +16,9 @@ class TripsController < ApplicationController
 
   def create
     @passenger = Passenger.find_by(id: params[:passenger_id])
-    @driver = @passenger.available_driver
-
+  
+  @driver = Driver.available_driver
+  p @driver
     new_trip_info = { driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, cost: 100 }
 
     @trip = Trip.new(new_trip_info)

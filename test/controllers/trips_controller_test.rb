@@ -5,7 +5,6 @@ describe TripsController do
   before do 
     @passenger = Passenger.create(name: "haben", phone_num:"22293094")
     @driver = Driver.create(name: "Vera", vin: "AAVDSRE", available: true)
-
   end
 
   let (:trip) {
@@ -14,54 +13,28 @@ describe TripsController do
 
   describe "show" do
     it "can get a valid trip" do
-      # Act
+    
       get trip_path(trip.id)
     
-      # Assert
       must_respond_with :success
     end
   
     it "will display not found for an invalid trip" do
-      # Act
+    
       get trip_path(0)
     
-      # Assert
       must_respond_with :not_found
     end
   end
 
  
   describe "create" do
-    before do 
-      @passenger = Passenger.create(name: "haben", phone_num:"22293094")
-      # @driver = Driver.create(name: "Vera", vin: "AAVDSRE", available: true)
-      @driver = @passenger.available_driver
-      # puts @passenger.available_driver
-    end
     it "can create a new trip" do
-    
-      # Arrange
-      trip_hash = {
-        trip: {
-          driver: @passenger.available_driver,
-          passenger: @passenger,
-          date: Date.today,
-          cost: 200,
-          rating: 4,
-        },
-      }
-      
-      # Act-Assert
+     
       expect {
-        post trips_path, params: trip_hash
-      }.must_change "Trip.count", 1
-      
-      new_trip= Trip.find_by(id: trip_hash[:trip][:id])
-      expect(new_trip.id).must_equal trip_hash[:trip][:id]
-
-      
-      must_respond_with :redirect
-      must_redirect_to trip_path(new_trip.id)
+        post passenger_trips_path(@passenger.id)
+      }.must_differ "Trip.count", 1
+      must_redirect_to trip_path(Trip.last.id)
     end
   end
 
@@ -87,7 +60,7 @@ describe TripsController do
     let (:new_trip_hash) {
       {
         trip: {
-          driver: @passenger.available_driver,
+          driver: Driver.available_driver,
           passenger: @passenger,
           date: Date.today,
           cost: 200,
@@ -106,7 +79,7 @@ describe TripsController do
 
       trip = Trip.find_by(id: id)
       expect(trip.id).must_equal trip.id
-      # expect(passenger.phone_num).must_equal new_passenger_hash[:passenger][:phone_num]
+      
     end
 
     it "will respond with not_found for invalid ids" do
@@ -134,13 +107,11 @@ describe TripsController do
   end
 
 
-
   describe "destroy" do
     it "can delete a trip" do
     
-      # Arrange
       delete trip_path(trip.id)
-      # Act-Assert
+      
       must_respond_with :redirect
     end
     it "will respond with redirect when attempting to delete a nonexistant trip" do

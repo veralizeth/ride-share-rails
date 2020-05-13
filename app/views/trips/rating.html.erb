@@ -1,0 +1,35 @@
+
+<% if @trips.length > 0%>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Driver's Name</th>
+        <th>Passenger's Name</th>
+        <th>Trip cost</th>
+        <th>Trip rating</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @trips.each do |trip|%>
+      <tr>
+        <td><%= link_to trip.id, trip_path(trip.id) %></td>
+        <% if trip.driver.nil? %>
+          <td><%= "Unknown or Deleted"%></td>
+        <% else %>
+          <td> <%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
+        <% end %>
+        <% if trip.passenger.nil? %>
+          <td><%= "Unknown or Deleted"%></td>
+        <% else %>
+          <td> <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+        <% end %>
+        <td><%= trip.cost %></td>
+        <td><%= trip.rating %></td>
+      </tr>
+    </tbody>
+    <%end %>
+</table>
+<%else%>
+  <h3> No Trips! </h3>
+<%end%>

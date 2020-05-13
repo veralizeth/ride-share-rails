@@ -11,12 +11,14 @@
   <% end %>
 
   <p>Please provide the following information to edit the passenger list in our database:</p>
+  <div class="form-inline">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control mb-2 mr-sm-2"%>
+  </div>
+  <div class="form-inline">
+    <%= f.label :phone_num %>
+    <%= f.text_field :phone_num,  class: "form-control mb-2 mr-sm-2"%>
+  </div>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :phone_num %>
-  <%= f.text_field :phone_num %>
-
-  <%= f.submit "#{action_name} Passenger", class: "passenger-button" %>
+  <%= f.submit "#{action_name} Passenger", class: "btn btn-secondary" %>
 <% end %>

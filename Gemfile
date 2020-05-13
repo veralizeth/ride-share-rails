@@ -57,7 +57,8 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'bootstrap'
 group :development, :test do
-  gem 'pry-rails'
+  gem 'sqlite3'
+  # gem 'pry-rails'
 end
 
 group :development do
@@ -66,6 +67,10 @@ group :development do
   gem 'debase', '>= 0.2.4.1'
   gem 'ruby-debug-ide', '>= 0.7.0'
 end
+
+# group :production do
+#   gem 'pg', '~> 0.18'
+# end
 
 group :development do
   gem 'better_errors'
@@ -76,3 +81,5 @@ group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'
 end
+
+

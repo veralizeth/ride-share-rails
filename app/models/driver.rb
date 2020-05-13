@@ -1,10 +1,8 @@
 class Driver < ApplicationRecord
-
   validates :name, presence: true
   validates :vin, presence: true
 
-  has_many :trips,  dependent: :nullify
-
+  has_many :trips, dependent: :nullify
 
   def self.available_driver
     available_driver = Driver.where(available: true)
@@ -17,7 +15,7 @@ class Driver < ApplicationRecord
   end
 
   def total_earnings
-    return self.trips.sum { |trip| (trip.cost - 165 ) * 0.8 }
+    return self.trips.sum { |trip| (trip.cost - 165) * 0.8 }
   end
 
   def average_rating
@@ -28,7 +26,7 @@ class Driver < ApplicationRecord
         total_rating += trip.rating
         count += 1
       end
-    end 
+    end
 
     if count == 0
       return 0
@@ -36,5 +34,4 @@ class Driver < ApplicationRecord
       return (total_rating.to_f / count).round(2)
     end
   end
-
 end

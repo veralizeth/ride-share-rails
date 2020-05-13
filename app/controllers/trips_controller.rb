@@ -8,7 +8,6 @@ class TripsController < ApplicationController
 
     @trip = Trip.find_by(id: trip_id)
     if @trip.nil?
-    
       head :not_found
       return
     end
@@ -16,9 +15,8 @@ class TripsController < ApplicationController
 
   def create
     @passenger = Passenger.find_by(id: params[:passenger_id])
-  
-  @driver = Driver.available_driver
-  p @driver
+
+    @driver = Driver.available_driver
     new_trip_info = { driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, cost: 100 }
 
     @trip = Trip.new(new_trip_info)
@@ -28,7 +26,7 @@ class TripsController < ApplicationController
       @driver.save
 
       redirect_to trip_path(@trip.id)
-      
+
       return
     else
       render :new

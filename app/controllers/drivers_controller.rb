@@ -27,7 +27,7 @@ class DriversController < ApplicationController
       redirect_to driver_path(@driver.id) # go to the index so we can see the driver in the list
       return
     else # save failed :(
-      render :edit, status: :bad_request# show the new driver form view again
+      render :edit, status: :bad_request # show the new driver form view again
       return
     end
   end
@@ -60,11 +60,9 @@ class DriversController < ApplicationController
     @driver = Driver.new(driver_params)
 
     if @driver.save
-      redirect_to driver_path(@driver.id)# Send them to the '/trips' path
+      redirect_to driver_path(@driver.id) # Send them to the '/trips' path
     else
-    
       render :new
-    
     end
   end
 
